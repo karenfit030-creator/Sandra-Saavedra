@@ -64,6 +64,17 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .agua-progress{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:8px;}
 .agua-progress-fill{height:100%;background:linear-gradient(to right,var(--blue),#a8d8f0);border-radius:3px;transition:width 0.3s ease;}
 .agua-msg{font-size:12px;color:var(--muted);text-align:center;font-style:italic;}.agua-reset{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;}
+
+/* ENTRENO */
+.ejercicio-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;}
+.ejercicio-num{width:32px;height:32px;border-radius:50%;background:var(--accentbg);border:1px solid var(--accentborder);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent);flex-shrink:0;}
+.ejercicio-info{flex:1;}
+.ejercicio-name{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px;}
+.ejercicio-detail{font-size:12px;color:var(--text2);}
+.ejercicio-detail strong{color:var(--accent);font-weight:600;}
+.entreno-day-card{margin-bottom:28px;}
+.entreno-day-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.entreno-day-sub{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
 /* SEGUIMIENTO CHECKLIST */
 .check-day-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin-bottom:10px;}
 .check-day-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
@@ -179,6 +190,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
   <div class="tab-nav-inner">
     <button class="tab-btn active" data-tab="plan" onclick="showTab('plan')">&#127869; Plan</button>
     <button class="tab-btn" data-tab="trackers" onclick="showTab('trackers')">&#128293; Trackers</button>
+    <button class="tab-btn" data-tab="entreno" onclick="showTab('entreno')">&#127947; Entreno</button>
     <button class="tab-btn" data-tab="suplementos" onclick="showTab('suplementos')">&#128138; Suplementos</button>
     <button class="tab-btn" data-tab="compras" onclick="showTab('compras')">&#128722; Compras</button>
     <button class="tab-btn" data-tab="seguimiento" onclick="showTab('seguimiento')">&#128202; Seguimiento</button>
@@ -293,6 +305,50 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
   </div>
   <div style="height:40px;"></div>
 </div>
+<!-- TAB: ENTRENO -->
+<div class="tab-content" id="tab-entreno">
+  <div class="section">
+    <div class="section-label">Mi Racha de Entreno</div>
+    <div class="racha-card">
+      <div class="racha-flames" id="rachaEntrenoFlames">&#127947;</div>
+      <span class="racha-number" id="rachaEntrenoNum">0</span>
+      <div class="racha-label">dias entrenados seguidos</div>
+      <button class="racha-btn" id="rachaEntrenoBtn" onclick="marcarEntreno()">&#10003; Entrene hoy</button>
+      <div class="racha-status" id="rachaEntrenoStatus"></div>
+      <div class="racha-motivacion" id="rachaEntrenoMotiv"></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:30px;">
+    <div class="section-label">Rutina Semanal</div>
+
+    <div class="entreno-day-card">
+      <div class="entreno-day-title">Lunes &middot; Espalda</div>
+      <div class="entreno-day-sub">5 ejercicios</div>
+      <div class="ejercicio-card"><div class="ejercicio-num">1</div><div class="ejercicio-info"><div class="ejercicio-name">Jalon abierto</div><div class="ejercicio-detail"><strong>4x15</strong> &middot; ultima serie drop set</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">2</div><div class="ejercicio-info"><div class="ejercicio-name">Jalon cerrado</div><div class="ejercicio-detail"><strong>4x15</strong> &middot; ultima serie drop set</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">3</div><div class="ejercicio-info"><div class="ejercicio-name">Remo unilateral y junto combinado</div><div class="ejercicio-detail"><strong>3x10</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">4</div><div class="ejercicio-info"><div class="ejercicio-name">Remo con barra</div><div class="ejercicio-detail"><strong>3x20</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">5</div><div class="ejercicio-info"><div class="ejercicio-name">Plancha estatica</div><div class="ejercicio-detail">Mantener el tiempo maximo posible</div></div></div>
+    </div>
+
+    <div class="entreno-day-card">
+      <div class="entreno-day-title">Martes &middot; Femoral y Pantorrilla</div>
+      <div class="entreno-day-sub">7 ejercicios</div>
+      <div class="ejercicio-card"><div class="ejercicio-num">1</div><div class="ejercicio-info"><div class="ejercicio-name">Curl acostado</div><div class="ejercicio-detail"><strong>4 series</strong> &middot; en drop sets</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">2</div><div class="ejercicio-info"><div class="ejercicio-name">Aduccion</div><div class="ejercicio-detail"><strong>5x10</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">3</div><div class="ejercicio-info"><div class="ejercicio-name">Peso muerto unilateral</div><div class="ejercicio-detail"><strong>3x15</strong> cada pierna</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">4</div><div class="ejercicio-info"><div class="ejercicio-name">Sumo con barra</div><div class="ejercicio-detail"><strong>3x15</strong> &middot; 3 seg subiendo, 3 seg bajando</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">5</div><div class="ejercicio-info"><div class="ejercicio-name">Curl sentado</div><div class="ejercicio-detail"><strong>3x12</strong> &middot; pesadas</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">6</div><div class="ejercicio-info"><div class="ejercicio-name">Peso muerto con barra</div><div class="ejercicio-detail"><strong>3x15</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">7</div><div class="ejercicio-info"><div class="ejercicio-name">Pantorrilla</div><div class="ejercicio-detail">Series al fallo controlado</div></div></div>
+    </div>
+
+    <div class="entreno-day-card">
+      <div class="entreno-day-title">Miercoles &middot; Pecho, Biceps, Triceps, Abdomen</div>
+      <div class="entreno-day-sub">5 ejercicios</div>
+      <div class="ejercicio-card"><div class="ejercicio-num">1</div><div class="ejercicio-info"><div class="ejercicio-name">Flexiones en triserie con aperturas</div><div class="ejercicio-detail">En colchoneta &middot; triserie completa</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">2</div><div class="ejercicio-info"><div class="ejercicio-name">Curl de biceps con barra</div><div class="ejercicio-detail"><strong>4x15</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">3</div><div class="ejercicio-info"><div class="ejercicio-name">Copa sentada</div><div class="ejercicio-detail"><strong>4x15</strong> &middot; triserie</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">4</div><div class="ejercicio-info"><div class="ejercicio-name">Curl unilateral sentado</div><div class="ejercicio-detail"><strong>4x10</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">5</div><div class="ejercicio-info"><div class="ejercicio-name">Fondos</div><div class="ejercicio-detail"><strong>4x15</strong></div></div></div>
+    </div>
+
+    <div class="entreno-day-card">
+      <div class="entreno-day-title">Viernes &middot; Hombros</div>
+      <div class="entreno-day-sub">4 ejercicios</div>
+      <div class="ejercicio-card"><div class="ejercicio-num">1</div><div class="ejercicio-info"><div class="ejercicio-name">Vuelos laterales</div><div class="ejercicio-detail"><strong>4x10</strong> &middot; pesados</div></div></div><div class="ejercicio-card"><div class="ejercicio-num">2</div><div class="ejercicio-info"><div class="ejercicio-name">Press militar</div><div class="ejercicio-detail"><strong>4x12</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">3</div><div class="ejercicio-info"><div class="ejercicio-name">Vuelos frontales</div><div class="ejercicio-detail"><strong>3x15</strong></div></div></div><div class="ejercicio-card"><div class="ejercicio-num">4</div><div class="ejercicio-info"><div class="ejercicio-name">Pull face a la frente</div><div class="ejercicio-detail"><strong>5x10</strong></div></div></div>
+    </div>
+  </div>
+  <div style="height:40px;"></div>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-divider"></div>
@@ -425,7 +481,25 @@ function resetCompras(){
     localStorage.removeItem('sandra_compra_'+item.dataset.id);
   });
 }
-window.onload=function(){cargarRacha();cargarAgua();renderChecklist();cargarCompras();document.querySelector('#day-0 .meal-card').classList.add('open');};
+
+/* RACHA ENTRENO (manual) */
+var FRASES_ENTRENO=["Sandra, no dejes que un dia sin marcar pare tu racha de entreno. Si fuiste al gym, marcalo.","Cada dia que entrenas y lo marcas es un ladrillo mas en tu progreso.","La racha de entreno es la prueba de tu constancia. No la pierdas por olvido.","Si entrenaste hoy, no se te olvide marcarlo antes de dormir.","Tu cuerpo sabe cuando entrenas. Que tu racha tambien lo sepa.","Un dia sin marcar no borra lo que entrenaste, pero si rompe la racha. Marca siempre."];
+function cargarRachaEntreno(){
+  var data=JSON.parse(localStorage.getItem('sandra_racha_entreno')||'{"dias":0,"ultimo":null}');
+  var hoyStr=hoy();var ayer=new Date();ayer.setDate(ayer.getDate()-1);
+  var ayerStr=ayer.getFullYear()+'-'+String(ayer.getMonth()+1).padStart(2,'0')+'-'+String(ayer.getDate()).padStart(2,'0');
+  var perdida=false;
+  if(data.ultimo&&data.ultimo!==hoyStr&&data.ultimo!==ayerStr){perdida=true;data.dias=0;localStorage.setItem('sandra_racha_entreno',JSON.stringify(data));}
+  document.getElementById('rachaEntrenoNum').textContent=data.dias;
+  var f=Math.min(Math.floor(data.dias/5)+1,5);var fl='';for(var i=0;i<f;i++)fl+='🏋️';document.getElementById('rachaEntrenoFlames').textContent=fl;
+  var btn=document.getElementById('rachaEntrenoBtn');var st=document.getElementById('rachaEntrenoStatus');var mo=document.getElementById('rachaEntrenoMotiv');
+  if(data.ultimo===hoyStr){btn.disabled=true;btn.textContent='Ya marcaste hoy';st.textContent='Entreno registrado! Vuelve cuando entrenes de nuevo.';st.className='racha-status ok';}
+  else if(perdida){btn.disabled=false;btn.textContent='Reiniciar racha';st.textContent='Se perdio la racha por no marcar un dia. Empieza de nuevo hoy.';st.className='racha-status alert';mo.textContent=FRASES_ENTRENO[Math.floor(Math.random()*FRASES_ENTRENO.length)];mo.className='racha-motivacion visible';}
+  else{btn.disabled=false;btn.textContent='Entrene hoy';st.textContent=data.dias>0?'Llevas '+data.dias+' dias entrenados seguidos!':'Marca tu primer dia de entreno.';st.className=data.dias>0?'racha-status ok':'racha-status';}
+}
+function marcarEntreno(){var data=JSON.parse(localStorage.getItem('sandra_racha_entreno')||'{"dias":0,"ultimo":null}');data.dias=(data.dias||0)+1;data.ultimo=hoy();localStorage.setItem('sandra_racha_entreno',JSON.stringify(data));cargarRachaEntreno();}
+
+window.onload=function(){cargarRacha();cargarRachaEntreno();cargarAgua();renderChecklist();cargarCompras();document.querySelector('#day-0 .meal-card').classList.add('open');};
 </script>
 </body>
 </html>
